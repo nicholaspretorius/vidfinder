@@ -21,7 +21,7 @@ class App extends React.Component {
         }
       });
       console.log("Videos: ", res);
-      this.setState({ videos: res.data.items });
+      this.setState({ videos: res.data.items, first: res.data.items[0] });
     } catch (e) {
       console.log("Error: ", e);
     }
@@ -31,8 +31,14 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onSubmit={this.onSearchSubmit} />
-        <VideoDetail />
-        <VideoList videos={this.state.videos} />
+        {this.state.videos.length > 0 ? (
+          <div>
+            <VideoDetail video={this.state.videos[0]} />
+            <VideoList videos={this.state.videos} />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
