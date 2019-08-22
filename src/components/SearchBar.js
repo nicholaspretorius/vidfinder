@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class SearchBar extends Component {
   state = {
-    query: null
+    query: ""
   };
 
   onFormSubmit = e => {
@@ -26,6 +26,7 @@ class SearchBar extends Component {
               type="text"
               name="search-term"
               placeholder="Search for videos..."
+              value={this.state.query}
               onChange={this.onInputChange}
             />
           </div>

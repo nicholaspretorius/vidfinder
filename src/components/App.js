@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
 import keys from "../config/keys";
+
 import youtube from "./../api/youtube";
 
 class App extends React.Component {
@@ -21,7 +22,7 @@ class App extends React.Component {
         }
       });
       console.log("Videos: ", res);
-      this.setState({ videos: res.data.items, first: res.data.items[0] });
+      this.setState({ videos: res.data.items });
     } catch (e) {
       console.log("Error: ", e);
     }
@@ -29,7 +30,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
         {this.state.videos.length > 0 ? (
           <div>

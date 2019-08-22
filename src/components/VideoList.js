@@ -3,17 +3,15 @@ import VideoItem from "./VideoItem";
 
 class VideoList extends Component {
   state = {};
-  render(props) {
+  render() {
     console.log("VideoList: ", this.props.videos);
     const { videos } = this.props;
-    return (
-      <div>
-        <h3>Results: </h3>
-        {videos.map(video => {
-          return <VideoItem key={video.etag} video={video} />;
-        })}
-      </div>
-    );
+
+    const rendered = videos.map(video => {
+      return <VideoItem key={video.etag} video={video} />;
+    });
+
+    return <div>{rendered}</div>;
   }
 }
 
