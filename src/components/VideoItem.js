@@ -2,12 +2,16 @@ import React, { Component } from "react";
 
 class VideoItem extends Component {
   state = {};
-  render(props) {
+  render() {
     const { title, thumbnails, description } = this.props.video.snippet;
     return (
-      <div>
-        <h4>{title}</h4>
-        <img src={thumbnails.default.url} alt={description} />
+      <div className="item">
+        <div className="small image">
+          <img src={thumbnails.default.url} alt={description} />
+        </div>
+        <div className="content">
+          <h4 className="header">{title}</h4>
+        </div>
       </div>
     );
   }

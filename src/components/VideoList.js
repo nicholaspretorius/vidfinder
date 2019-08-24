@@ -11,7 +11,7 @@ class VideoList extends Component {
       return <VideoItem key={video.etag} video={video} />;
     });
 
-    return <div>{rendered}</div>;
+    return <div className="ui divided list">{rendered}</div>;
   }
 }
 

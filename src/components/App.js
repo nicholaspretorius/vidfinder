@@ -33,9 +33,13 @@ class App extends React.Component {
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
         {this.state.videos.length > 0 ? (
-          <div>
-            <VideoDetail video={this.state.videos[0]} />
-            <VideoList videos={this.state.videos} />
+          <div className="ui stackable grid">
+            <div className="ten wide column">
+              <VideoDetail video={this.state.videos[0]} />
+            </div>
+            <div className="six wide column">
+              <VideoList videos={this.state.videos} />
+            </div>
           </div>
         ) : (
           ""
