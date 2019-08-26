@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import "./VideoItem.css";
 
 class VideoItem extends Component {
   state = {};
   render() {
     const { title, thumbnails, description } = this.props.video.snippet;
     return (
-      <div className="item">
+      <div className="item video-item">
         <div className="small image">
           <img src={thumbnails.default.url} alt={description} />
         </div>
