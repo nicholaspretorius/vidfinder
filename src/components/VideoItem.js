@@ -3,10 +3,16 @@ import "./VideoItem.css";
 
 class VideoItem extends Component {
   state = {};
+
+  onVideoSelected = e => {
+    console.log("From item: ", this.props.video);
+    this.props.onVideoSelected(this.props.video);
+  };
+
   render() {
     const { title, thumbnails, description } = this.props.video.snippet;
     return (
-      <div className="item video-item">
+      <div className="item video-item" onClick={this.onVideoSelected}>
         <div className="small image">
           <img src={thumbnails.default.url} alt={description} />
         </div>

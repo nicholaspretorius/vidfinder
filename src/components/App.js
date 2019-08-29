@@ -8,7 +8,8 @@ import youtube from "./../api/youtube";
 
 class App extends React.Component {
   state = {
-    videos: []
+    videos: [],
+    selectedVideo: null
   };
   onSearchSubmit = async query => {
     console.log("query: ", query);
@@ -28,18 +29,28 @@ class App extends React.Component {
     }
   };
 
+  onVideoSelected = selectedVideo => {
+    console.log("From the app: ", selectedVideo);
+    this.setState({ selectedVideo: selectedVideo });
+  };
+
   render() {
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit} />
         {this.state.videos.length > 0 ? (
           <div className="ui stackable grid">
-            <div className="ten wide column">
-              <VideoDetail video={this.state.videos[0]} />
-            </div>
+            {this.state.selectedVideo ? (
+              <div className="ten wide column">
+                <VideoDetail video={this.state.selectedVideo} />
+              </div>
+            ) : (
+              ""
+            )}
             <div className="six wide column">
-              <VideoList videos={this.state.videos} />
+              <VideoList videos={this.state.videos} onVideoSelected={this.onVideoSelected} />
             </div>
+            )
           </div>
         ) : (
           ""
