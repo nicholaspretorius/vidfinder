@@ -11,6 +11,11 @@ class App extends React.Component {
     videos: [],
     selectedVideo: null
   };
+
+  componentWillMount() {
+    this.onSearchSubmit("skateline");
+  }
+
   onSearchSubmit = async query => {
     console.log("query: ", query);
     try {
@@ -23,7 +28,7 @@ class App extends React.Component {
         }
       });
       console.log("Videos: ", res);
-      this.setState({ videos: res.data.items });
+      this.setState({ videos: res.data.items, selectedVideo: res.data.items[0] });
     } catch (e) {
       console.log("Error: ", e);
     }
@@ -40,13 +45,9 @@ class App extends React.Component {
         <SearchBar onSubmit={this.onSearchSubmit} />
         {this.state.videos.length > 0 ? (
           <div className="ui stackable grid">
-            {this.state.selectedVideo ? (
-              <div className="ten wide column">
-                <VideoDetail video={this.state.selectedVideo} />
-              </div>
-            ) : (
-              ""
-            )}
+            <div className="ten wide column">
+              <VideoDetail video={this.state.selectedVideo} />
+            </div>
             <div className="six wide column">
               <VideoList videos={this.state.videos} onVideoSelected={this.onVideoSelected} />
             </div>
